@@ -3,6 +3,7 @@ import { ThemeProvider } from "@material-ui/core/styles";
 
 import Bar from "./Bar";
 import EpisodeSlider from "./EpisodeSlider";
+import Cloud from "./Cloud";
 
 import { theme } from "./style/theme";
 import { EpisodeRange, Stories } from "../types";
@@ -20,6 +21,7 @@ const App: FC = () => {
   return (
     <>
       <Bar />
+      <Cloud episode_range={episode_range} />
       <EpisodeSlider
         range={episode_range}
         max_ep={episode_num - 1}

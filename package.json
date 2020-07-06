@@ -38,6 +38,8 @@
     "@material-ui/core": "^4.11.0",
     "@types/throttle-debounce": "^2.1.0",
     "kuromojin": "^2.0.0",
+    "mix-color": "^1.1.2",
+    "react-wordcloud": "^1.2.3",
     "throttle-debounce": "^2.2.1",
     "ts-node": "^8.10.2",
     "typescript": "^3.9.6"

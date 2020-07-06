@@ -50,7 +50,7 @@ const main = async () => {
       const word_count_map: Map<string, number> = new Map();
       word_texts.forEach((x) => {
         const count = word_count_map.get(x);
-        word_count_map.set(x, count ? count : 0 + 1);
+        word_count_map.set(x, (count ? count : 0) + 1);
       });
 
       const words: WordInfo[] = Array.from(word_count_map.entries())
