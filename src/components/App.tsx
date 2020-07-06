@@ -1,23 +1,36 @@
-import React from "react";
+import React, { FC, useState } from "react";
+import { ThemeProvider } from "@material-ui/core/styles";
 
-function App() {
+import Bar from "./Bar";
+import EpisodeSlider from "./EpisodeSlider";
+
+import { theme } from "./style/theme";
+import { EpisodeRange, Stories } from "../types";
+
+import stories_json from "../analyser/stories.json";
+const stories: Stories = stories_json;
+const episode_num = stories.reduce((s, x) => [...s, ...x]).length;
+
+const App: FC = () => {
+  const [episode_range, setEpisodeRange] = useState<EpisodeRange>({
+    from: 0,
+    to: episode_num - 1,
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Bar />
+      <EpisodeSlider
+        range={episode_range}
+        max_ep={episode_num - 1}
+        setEpisodeRange={setEpisodeRange}
+      />
+    </>
   );
-}
+};
 
-export default App;
+export default () => (
+  <ThemeProvider theme={theme}>
+    <App />
+  </ThemeProvider>
+);
