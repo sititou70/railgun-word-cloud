@@ -45,7 +45,7 @@ const main = async () => {
               (y) => x.pos_detail_1.indexOf(y) !== -1
             ) === undefined
         )
-        .map((x) => (x.basic_form ? x.basic_form : x.surface_form));
+        .map((x) => (x.basic_form !== "*" ? x.basic_form : x.surface_form));
 
       const word_count_map: Map<string, number> = new Map();
       word_texts.forEach((x) => {
