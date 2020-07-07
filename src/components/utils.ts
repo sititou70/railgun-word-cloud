@@ -1,4 +1,4 @@
-import { Stories, WordInfo } from "../types";
+import { Stories, WordInfo, EpisodeRange, Story } from "../types";
 import stories_json from "../analyser/stories.json";
 
 export const stories: Stories = stories_json;
@@ -32,3 +32,6 @@ export const getEpisodeString = (ep: number): string => {
 
   return `season${current_season + 1} ep${rest_ep + 1}`;
 };
+
+export const getRangeFilterdFlattenStories = (range: EpisodeRange): Story[] =>
+  flatten_stories.slice(range.from, range.to + 1);

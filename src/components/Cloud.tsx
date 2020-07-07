@@ -1,26 +1,36 @@
-import React, { FC } from "react";
+import React, { FC, useMemo } from "react";
 import ReactWordcloud from "react-wordcloud";
 import mix from "mix-color";
 import styled from "@emotion/styled";
 import { theme } from "./style/theme";
 
-import { EpisodeRange, WordInfo } from "../types";
-import { margeWords, flatten_stories } from "./utils";
+import { EpisodeRange } from "../types";
+import { margeWords, getRangeFilterdFlattenStories } from "./utils";
 
 const color_scale = [...Array(10).keys()].map((x) =>
   mix(theme.palette.secondary.main, theme.palette.primary.main, x / 10)
 );
 
-const Cloud: FC<{ episode_range: EpisodeRange }> = ({ episode_range }) => {
-  const words: WordInfo[] = flatten_stories
-    .slice(episode_range.from, episode_range.to + 1)
-    .map((x) => x.words)
-    .reduce(margeWords);
+const Cloud: FC<{
+  episode_range: EpisodeRange;
+  onWordClick?: (word: string) => void;
+}> = ({ episode_range, onWordClick }) => {
+  const words: { text: string; value: number }[] = useMemo(
+    () =>
+      getRangeFilterdFlattenStories(episode_range)
+        .map((x) => x.words)
+        .reduce(margeWords)
+        .map((x) => ({ text: x.word, value: x.num })),
+    [episode_range]
+  );
 
-  return (
-    <CloudRoot>
+  const react_wordcloud = useMemo(
+    () => (
       <ReactWordcloud
-        words={words.map((x) => ({ text: x.word, value: x.num }))}
+        words={words}
+        callbacks={{
+          onWordClick: (word) => (onWordClick ? onWordClick(word.text) : null),
+        }}
         options={{
           fontSizes: [18, 72],
           colors: color_scale,
@@ -29,8 +39,11 @@ const Cloud: FC<{ episode_range: EpisodeRange }> = ({ episode_range }) => {
           fontWeight: "bold",
         }}
       />
-    </CloudRoot>
+    ),
+    [words, onWordClick]
   );
+
+  return <CloudRoot>{react_wordcloud}</CloudRoot>;
 };
 const CloudRoot = styled.div`
   width: 100%;
