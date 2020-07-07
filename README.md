@@ -1,68 +1,25 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# [とある科学の超電磁砲 Word Cloud](https://sititou70.github.io/railgun-word-cloud/)
 
-## Available Scripts
+とある科学の超電磁砲シリーズのキーワードをワードクラウドで可視化します
 
-In the project directory, you can run:
+## 情報元
 
-### `npm start`
+アニメ公式サイトのストーリーページからキーワードを抽出しています．
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- [ストーリー -とある科学の超電磁砲 アニメ公式サイト-](https://toaru-project.com/railgun/story/)
+- [STORY -とある科学の超電磁砲 S アニメ公式サイト-](https://toaru-project.com/railgun_s/story/)
+- [Introduction - とある科学の超電磁砲 T アニメ公式サイト](https://toaru-project.com/railgun_t/story/)
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## ポリシー
 
-### `npm test`
+本アプリに，とある科学の超電磁砲シリーズのコンテンツイメージを損なわせる意図はありません．
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+公式サイトから情報を取得する際には，リクエストごとに 7000ms 以上のインターバルを設定しています．これにより，公式サイトをホストするサーバーへの極端な負荷を防止しています．
 
-### `npm run build`
+本アプリに問題がある場合は，本リポジトリの issue へご一報ください．
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## License
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+[MIT License](https://opensource.org/licenses/MIT)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+だたし，`src/analyser/dict`は，[kuromoji.js](https://github.com/takuyaa/kuromoji.js)が使用する辞書に[mecab-ipadic-NEologd](https://github.com/neologd/mecab-ipadic-neologd)を追加してビルドした辞書であり，mecab-ipadic-NEologd は Apache License, Version 2.0 を使用しています．
