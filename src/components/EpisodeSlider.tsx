@@ -1,23 +1,11 @@
 import React, { FC, useMemo } from "react";
 import { throttle } from "throttle-debounce";
 import styled from "@emotion/styled";
-import { EpisodeRange, Stories } from "../types";
+import { EpisodeRange } from "../types";
 import Slider from "@material-ui/core/Slider";
 import Tooltip from "@material-ui/core/Tooltip";
 
-import stories_json from "../analyser/stories.json";
-const stories: Stories = stories_json;
-
-const getEpisodeString = (ep: number): string => {
-  let rest_ep = ep;
-  let current_season = 0;
-  while (rest_ep >= stories[current_season].length) {
-    rest_ep -= stories[current_season].length;
-    current_season++;
-  }
-
-  return `season${current_season + 1} ep${rest_ep + 1}`;
-};
+import { getEpisodeString } from "./utils";
 
 const SliderLabel: FC<{
   value: number;

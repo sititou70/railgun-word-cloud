@@ -1,31 +1,11 @@
-import React, { FC, useMemo } from "react";
+import React, { FC } from "react";
 import ReactWordcloud from "react-wordcloud";
 import mix from "mix-color";
-
-import { theme } from "./style/theme";
-import { EpisodeRange, Stories, WordInfo } from "../types";
 import styled from "@emotion/styled";
+import { theme } from "./style/theme";
 
-import stories_json from "../analyser/stories.json";
-const stories: Stories = stories_json;
-const flatten_stories = stories.reduce((s, x) => [...s, ...x]);
-
-const margeWords = (x: WordInfo[], y: WordInfo[]): WordInfo[] => {
-  const word_count_map: Map<string, number> = new Map();
-  const countWords = (words: WordInfo[]): void =>
-    words.forEach((x) => {
-      const count = word_count_map.get(x.word);
-      word_count_map.set(x.word, (count ? count : 0) + x.num);
-    });
-
-  countWords(x);
-  countWords(y);
-
-  return Array.from(word_count_map.entries()).map((x) => ({
-    word: x[0],
-    num: x[1],
-  }));
-};
+import { EpisodeRange, WordInfo } from "../types";
+import { margeWords, flatten_stories } from "./utils";
 
 const color_scale = [...Array(10).keys()].map((x) =>
   mix(theme.palette.secondary.main, theme.palette.primary.main, x / 10)

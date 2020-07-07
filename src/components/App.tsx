@@ -6,11 +6,8 @@ import EpisodeSlider from "./EpisodeSlider";
 import Cloud from "./Cloud";
 
 import { theme } from "./style/theme";
-import { EpisodeRange, Stories } from "../types";
-
-import stories_json from "../analyser/stories.json";
-const stories: Stories = stories_json;
-const episode_num = stories.reduce((s, x) => [...s, ...x]).length;
+import { EpisodeRange } from "../types";
+import { episode_num } from "./utils";
 
 const App: FC = () => {
   const [episode_range, setEpisodeRange] = useState<EpisodeRange>({
