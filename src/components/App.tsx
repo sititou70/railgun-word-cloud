@@ -30,7 +30,7 @@ const App: FC = () => {
         setEpisodeRange={setEpisodeRange}
       />
       <SearchStoriesModal
-        query={selected_word ? selected_word : ""}
+        query={selected_word ? selected_word : "\0"}
         episode_range={episode_range}
         open={selected_word !== null}
         onClose={useCallback(() => setSelectedWord(null), [])}

@@ -12,7 +12,7 @@ const OUTPUT = "stories.json";
 
 const main = async () => {
   const tokenizer = await getTokenizer({
-    dicPath: path.join(path.dirname(require.resolve("kuromoji")), "../dict"),
+    dicPath: path.join(__dirname, "./dict"),
   });
 
   const stories: Stories = story_texts.map((x) =>
@@ -45,7 +45,7 @@ const main = async () => {
               (y) => x.pos_detail_1.indexOf(y) !== -1
             ) === undefined
         )
-        .map((x) => (x.basic_form !== "*" ? x.basic_form : x.surface_form));
+        .map((x) => x.surface_form);
 
       const word_count_map: Map<string, number> = new Map();
       word_texts.forEach((x) => {

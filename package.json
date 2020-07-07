@@ -12,6 +12,7 @@
   },
   "scripts": {
     "analyse": "cd src/analyser && ts-node index.ts",
+    "install": "npm run analyse",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
