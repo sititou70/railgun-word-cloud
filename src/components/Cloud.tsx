@@ -28,6 +28,7 @@ const Cloud: FC<{
     () => (
       <ReactWordcloud
         words={words}
+        maxWords={150}
         callbacks={{
           onWordClick: (word) => (onWordClick ? onWordClick(word.text) : null),
         }}

@@ -8,6 +8,7 @@ const story_texts: StoryTexts = story_texts_json;
 
 const POS_WHITELIST = ["一般", "名詞", "形容詞", "未定義"];
 const POS_DETAIL_BLACKLIST = ["数", "接尾", "非自立", "代名詞", "サ変接続"];
+const MIN_WORD_LENGTH = 1;
 const OUTPUT = "stories.json";
 
 const main = async () => {
@@ -35,6 +36,7 @@ const main = async () => {
 
       const word_texts: string[] = tokenizer
         .tokenize(x)
+        .filter((x) => x.surface_form.length > MIN_WORD_LENGTH)
         .filter(
           (x) =>
             POS_WHITELIST.find((y) => x.pos.indexOf(y) !== -1) !== undefined
